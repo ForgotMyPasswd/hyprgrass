@@ -33,7 +33,8 @@ jobs:
           popd
 
       - uses: actions/checkout@v4
-        with: ${{ inputs.hyprgrass_rev }}
+        with:
+          ref: ${{ inputs.hyprgrass_rev }}
 
       - name: Get Hyprland commit SHA
         run: |
