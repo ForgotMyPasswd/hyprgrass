@@ -36,7 +36,7 @@ jobs:
         with:
           ref: ${{ inputs.hyprgrass_rev }}
 
-      - name: Get Hyprland commit SHA
+      - name: Get Hyprgrass commit SHA
         run: |
           HYPRGRASS_COMMIT=$(git rev-parse HEAD)
           echo "Commit SHA of hyprgrass revision '${{ inputs.hyprgrass_rev }}' is $HYPRGRASS_COMMIT"
@@ -45,7 +45,7 @@ jobs:
       - name: build and test hyprgrass
         run: |
           nix build .#hyprgrassWithTests \
-          --override-input 'github:hyprwm/hyprland/${{ inputs.hyprland_rev }}'
+          --override-input hyprland 'github:hyprwm/Hyprland/${{ inputs.hyprland_rev }}' \
           --option extra-substituters https://hyprland.cachix.org \
           --option extra-trusted-public-keys hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
       - name: update commit pin and create pr
